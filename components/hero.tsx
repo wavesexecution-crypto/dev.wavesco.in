@@ -52,13 +52,10 @@ export function Hero() {
           </motion.div>
 
           <h1 className="max-w-5xl text-[clamp(2.6rem,7.2vw,6rem)] font-semibold leading-[1.03] tracking-[-0.04em] text-foreground">
-            <motion.span variants={item} className="block text-gradient">
-              We design websites
-            </motion.span>
-            <motion.span variants={item} className="block">
-              people{" "}
-              <span className="text-gradient-accent">remember.</span>
-            </motion.span>
+            <span className="block text-gradient">We design websites</span>
+            <span className="block">
+              people <span className="text-gradient-accent">remember.</span>
+            </span>
           </h1>
 
           <motion.p
