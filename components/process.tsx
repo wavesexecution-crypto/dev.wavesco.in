@@ -34,7 +34,7 @@ export function Process() {
       <Container>
         <Reveal className="flex flex-col gap-5">
           <Eyebrow>How we work</Eyebrow>
-          <h2 className="max-w-2xl text-balance text-3xl font-semibold leading-[1.08] tracking-tight text-foreground sm:text-4xl md:text-5xl">
+          <h2 className="max-w-2xl text-3xl font-semibold leading-[1.08] tracking-tight text-foreground sm:text-4xl md:text-5xl">
             A process with no surprises.
           </h2>
         </Reveal>
@@ -47,7 +47,7 @@ export function Process() {
                 transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
                 className="group flex h-full flex-col gap-4 rounded-2xl border border-line bg-card p-6 transition-colors duration-300 hover:border-zinc-700"
               >
-                <span className="font-mono text-xs text-faint transition-colors group-hover:text-accent">
+                <span className="font-mono text-xs text-faint transition-colors group-hover:text-accent-text">
                   {step.num}
                 </span>
                 <div>

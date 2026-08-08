@@ -34,7 +34,7 @@ export function SectionHeading({
   return (
     <Reveal className={cn("flex flex-col gap-5", className)}>
       <Eyebrow>{eyebrow}</Eyebrow>
-      <h2 className="max-w-3xl text-balance text-3xl font-semibold leading-[1.08] tracking-tight text-foreground sm:text-4xl md:text-5xl">
+      <h2 className="max-w-3xl text-3xl font-semibold leading-[1.08] tracking-tight text-foreground sm:text-4xl md:text-5xl">
         {title}
       </h2>
       {description ? (

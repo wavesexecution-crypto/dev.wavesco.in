@@ -8,7 +8,7 @@ import { Footer } from "@/components/footer";
 
 export default function Home() {
   return (
-    <div className="grain relative min-h-screen">
+    <div className="relative min-h-screen">
       <Navigation />
       <main>
         <Hero />

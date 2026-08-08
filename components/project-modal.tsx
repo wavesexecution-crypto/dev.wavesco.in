@@ -1,12 +1,9 @@
-﻿"use client";
+"use client";
 
 import { useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowUpRight, X } from "lucide-react";
 import type { Project } from "@/lib/projects";
-import { ProjectPreview } from "@/components/project-previews";
-
-export type ModalMode = "preview" | "case";
 
 const modalItem = {
   hidden: { opacity: 0, y: 32 },
@@ -19,11 +16,9 @@ const modalItem = {
 
 export function ProjectModal({
   project,
-  mode,
   onClose,
 }: {
   project: Project | null;
-  mode: ModalMode;
   onClose: () => void;
 }) {
   useEffect(() => {
@@ -53,7 +48,7 @@ export function ProjectModal({
           onClick={onClose}
           role="dialog"
           aria-modal="true"
-          aria-label={`${project.title} — ${mode === "preview" ? "preview" : "case study"}`}
+          aria-label={`${project.title} — build details`}
         >
           <motion.div
             variants={modalItem}
@@ -82,70 +77,54 @@ export function ProjectModal({
               </button>
             </div>
 
-            <div className="p-6">
-              {mode === "preview" ? (
-                <div className="flex flex-col gap-5">
-                  <div className="overflow-hidden rounded-xl border border-line/70 bg-background p-2.5">
-                    <ProjectPreview variant={project.variant} />
-                  </div>
-                  <p className="text-sm leading-relaxed text-muted">
-                    {project.description}
-                  </p>
-                  <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-faint">
-                    Sample project — illustrative preview, not a live deployment
-                  </p>
+            <div className="flex flex-col gap-8 p-6">
+              <div>
+                <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-faint">
+                  Overview
+                </p>
+                <p className="mt-3 text-base leading-relaxed text-foreground/90">
+                  {project.summary}
+                </p>
+              </div>
+
+              <div>
+                <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-faint">
+                  Approach
+                </p>
+                <ul className="mt-3 flex flex-col gap-3">
+                  {project.approach.map((point) => (
+                    <li key={point} className="flex gap-3 text-sm leading-relaxed text-muted">
+                      <span className="mt-[7px] h-1 w-1 shrink-0 rounded-full bg-accent" />
+                      {point}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div>
+                <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-faint">
+                  Delivered
+                </p>
+                <div className="mt-3 flex flex-wrap gap-2">
+                  {project.deliverables.map((d) => (
+                    <span
+                      key={d}
+                      className="rounded-full border border-line bg-card px-3.5 py-1.5 text-xs text-muted"
+                    >
+                      {d}
+                    </span>
+                  ))}
                 </div>
-              ) : (
-                <div className="flex flex-col gap-8">
-                  <div>
-                    <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-faint">
-                      Overview
-                    </p>
-                    <p className="mt-3 text-base leading-relaxed text-foreground/90">
-                      {project.summary}
-                    </p>
-                  </div>
+              </div>
 
-                  <div>
-                    <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-faint">
-                      Approach
-                    </p>
-                    <ul className="mt-3 flex flex-col gap-3">
-                      {project.approach.map((point) => (
-                        <li key={point} className="flex gap-3 text-sm leading-relaxed text-muted">
-                          <span className="mt-[7px] h-1 w-1 shrink-0 rounded-full bg-accent" />
-                          {point}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  <div>
-                    <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-faint">
-                      Delivered
-                    </p>
-                    <div className="mt-3 flex flex-wrap gap-2">
-                      {project.deliverables.map((d) => (
-                        <span
-                          key={d}
-                          className="rounded-full border border-line bg-card px-3.5 py-1.5 text-xs text-muted"
-                        >
-                          {d}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-
-                  <a
-                    href="#contact"
-                    onClick={onClose}
-                    className="group inline-flex w-fit items-center gap-2 text-sm font-medium text-accent transition-colors hover:text-accent-hover"
-                  >
-                    Start a project like this
-                    <ArrowUpRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                  </a>
-                </div>
-              )}
+              <a
+                href="#contact"
+                onClick={onClose}
+                className="group inline-flex w-fit items-center gap-2 text-sm font-medium text-accent-text transition-colors hover:text-accent-text-hover"
+              >
+                Start a project like this
+                <ArrowUpRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </a>
             </div>
           </motion.div>
         </motion.div>

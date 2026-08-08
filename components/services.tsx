@@ -31,7 +31,7 @@ export function Services() {
       <Container>
         <Reveal className="flex flex-col gap-5">
           <Eyebrow>What we do</Eyebrow>
-          <h2 className="max-w-2xl text-balance text-3xl font-semibold leading-[1.08] tracking-tight text-foreground sm:text-4xl md:text-5xl">
+          <h2 className="max-w-2xl text-3xl font-semibold leading-[1.08] tracking-tight text-foreground sm:text-4xl md:text-5xl">
             Three things. Done properly.
           </h2>
         </Reveal>
@@ -49,14 +49,14 @@ export function Services() {
                   {service.num}
                 </span>
                 <div className="flex flex-1 flex-col gap-2 md:flex-row md:items-baseline md:justify-between md:gap-8">
-                  <h3 className="text-2xl font-semibold tracking-tight text-foreground transition-colors group-hover:text-accent md:text-4xl">
+                  <h3 className="text-2xl font-semibold tracking-tight text-foreground transition-colors group-hover:text-accent-text md:text-4xl">
                     {service.title}
                   </h3>
                   <p className="max-w-md text-sm leading-relaxed text-muted md:text-[15px]">
                     {service.line}
                   </p>
                 </div>
-                <ArrowUpRight className="mt-2 h-5 w-5 shrink-0 text-faint transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent" />
+                <ArrowUpRight className="mt-2 h-5 w-5 shrink-0 text-faint transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent-text" />
               </motion.a>
             </Reveal>
           ))}
@@ -69,7 +69,7 @@ export function Services() {
               href={site.booking.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-accent underline-offset-4 transition-colors hover:text-accent-hover hover:underline"
+              className="text-accent-text underline-offset-4 transition-colors hover:text-accent-text-hover hover:underline"
             >
               Book a call
             </a>

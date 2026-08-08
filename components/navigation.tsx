@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
@@ -165,7 +165,7 @@ export function Navigation() {
                     initial={{ opacity: 0, y: 16 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.07 * i, duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                    className="border-b border-line/70 py-5 text-3xl font-semibold tracking-tight text-foreground transition-colors hover:text-accent"
+                    className="border-b border-line/70 py-5 text-3xl font-semibold tracking-tight text-foreground transition-colors hover:text-accent-text"
                   >
                     {link.label}
                   </motion.a>

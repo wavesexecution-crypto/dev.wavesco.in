@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Mail, MessageCircle, Send, Check, CalendarCheck, ArrowUpRight } from "lucide-react";
+import { Mail, MessageCircle, Send, Check } from "lucide-react";
 import { Container } from "@/components/container";
 import { Reveal } from "@/components/reveal";
 import { Eyebrow } from "@/components/section-heading";
@@ -17,7 +17,7 @@ function ContactForm() {
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const text = encodeURIComponent(
-      `Hi ${site.name}, my name is ${name}.\n\n${message}\n\n— ${name}${email ? ` (${email})` : ""}`
+      `New project inquiry\n\nName: ${name}\nEmail: ${email || "not provided"}\n\n${message}`
     );
     window.open(`https://wa.me/${site.whatsapp}?text=${text}`, "_blank", "noopener,noreferrer");
     setSent(true);
@@ -105,7 +105,7 @@ export function Contact() {
       <Container>
         <Reveal className="flex max-w-3xl flex-col gap-5">
           <Eyebrow>Contact</Eyebrow>
-          <h2 className="text-balance text-3xl font-semibold leading-[1.08] tracking-tight text-foreground sm:text-4xl md:text-5xl">
+          <h2 className="text-3xl font-semibold leading-[1.08] tracking-tight text-foreground sm:text-4xl md:text-5xl">
             Let&apos;s build something worth visiting.
           </h2>
           <p className="text-base leading-relaxed text-muted md:text-lg">
@@ -125,50 +125,17 @@ export function Contact() {
                   href={site.booking.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-xs text-accent transition-colors hover:text-accent-hover"
+                  className="text-xs text-accent-text transition-colors hover:text-accent-text-hover"
                 >
                   Open in new tab ↗
                 </a>
               </div>
-              {site.booking.configured ? (
-                <iframe
-                  src={site.booking.url}
-                  title="Book a call with WavesCo"
-                  className="h-[560px] w-full"
-                  loading="lazy"
-                />
-              ) : (
-                <div className="relative flex h-[560px] flex-col items-center justify-center gap-5 px-8 text-center">
-                  <div
-                    aria-hidden="true"
-                    className="pointer-events-none absolute left-1/2 top-1/2 h-64 w-64 -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent/10 blur-[80px]"
-                  />
-                  <span className="flex h-12 w-12 items-center justify-center rounded-2xl border border-line bg-surface text-accent">
-                    <CalendarCheck className="h-5 w-5" />
-                  </span>
-                  <div className="flex flex-col gap-2">
-                    <h3 className="text-xl font-semibold tracking-tight text-foreground">
-                      Pick a time that suits you.
-                    </h3>
-                    <p className="mx-auto max-w-sm text-sm leading-relaxed text-muted">
-                      Thirty minutes, no pressure — we&apos;ll talk through your
-                      project and tell you honestly if we can help.
-                    </p>
-                  </div>
-                  <a
-                    href={site.booking.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group inline-flex h-11 items-center gap-2 rounded-full bg-accent px-6 text-sm font-medium text-white transition-colors hover:bg-accent-hover"
-                  >
-                    Open booking
-                    <ArrowUpRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                  </a>
-                  <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-faint">
-                    Calendar embed activates on launch
-                  </p>
-                </div>
-              )}
+              <iframe
+                src={site.booking.url}
+                title="Book a call with WavesCo"
+                className="h-[560px] w-full"
+                loading="lazy"
+              />
             </div>
 
             <div className="flex flex-col gap-3 sm:flex-row">
@@ -176,7 +143,7 @@ export function Contact() {
                 href={`mailto:${site.email}`}
                 className="group flex flex-1 items-center gap-3 rounded-2xl border border-line bg-card px-5 py-4 transition-colors hover:border-zinc-700"
               >
-                <Mail className="h-4 w-4 text-muted transition-colors group-hover:text-accent" />
+                <Mail className="h-4 w-4 text-muted transition-colors group-hover:text-accent-text" />
                 <div>
                   <p className="text-xs text-faint">Email</p>
                   <p className="text-sm font-medium text-foreground">{site.email}</p>
@@ -188,7 +155,7 @@ export function Contact() {
                 rel="noopener noreferrer"
                 className="group flex flex-1 items-center gap-3 rounded-2xl border border-line bg-card px-5 py-4 transition-colors hover:border-zinc-700"
               >
-                <MessageCircle className="h-4 w-4 text-muted transition-colors group-hover:text-accent" />
+                <MessageCircle className="h-4 w-4 text-muted transition-colors group-hover:text-accent-text" />
                 <div>
                   <p className="text-xs text-faint">WhatsApp</p>
                   <p className="text-sm font-medium text-foreground">Chat with us</p>

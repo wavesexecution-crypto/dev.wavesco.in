@@ -23,19 +23,17 @@ All site-wide values live in `lib/site.ts`:
 | `domain` / `url` | Public domain. Update `metadataBase` implications. |
 | `email` | Contact email (used for the `mailto:` link). |
 | `whatsapp` | WhatsApp number, digits only with country code (used for the `wa.me` links and the contact form). |
-| `booking.configured` | Set to `true` once the Cal.com page is live. |
-| `booking.url` | The Cal.com booking URL. Replaces the placeholder `https://cal.com/wavesco/intro`. |
-
-Until `booking.configured` is `true`, the contact section shows a designed
-fallback card instead of a broken iframe. Flip it to `true` to embed Cal.com.
+| `booking.url` | The Cal.com booking URL, embedded in the contact section. |
 
 ## Content
 
-- Project samples live in `lib/projects.ts`. Each entry drives the card, the
-  live preview and the case study modal. Thumbnails are hand-built vector
-  mockups in `components/project-previews.tsx` — no image assets required.
-- Replace the sample projects with real client work as it ships. Cards render
+- Project entries live in `lib/projects.ts`. Each entry drives the card and
+  the build-detail modal. Thumbnails are hand-built vector mockups in
+  `components/project-previews.tsx` — no image assets required.
+- Swap the current builds for real client work as it ships. Cards render
   whatever data is in the array; no other edits needed.
+- Live Preview buttons are hidden unless a project is publicly accessible —
+  add a `buildUrl` when one exists.
 
 ## Structure
 

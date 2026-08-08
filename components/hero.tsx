@@ -25,10 +25,13 @@ export function Hero() {
 
   return (
     <section id="top" className="relative flex min-h-[100svh] flex-col overflow-hidden">
-      <div className="dot-grid absolute inset-0 edge-fade" aria-hidden="true" />
-      <div
+            <div
         aria-hidden="true"
-        className="pointer-events-none absolute -top-40 left-1/2 h-[560px] w-[820px] -translate-x-1/2 rounded-full bg-accent/[0.13] blur-[140px]"
+        className="pointer-events-none absolute -top-40 left-1/2 h-[560px] w-[820px] -translate-x-1/2"
+        style={{
+          background:
+            "radial-gradient(closest-side, rgba(37,99,235,0.16), rgba(37,99,235,0.05) 55%, transparent)",
+        }}
       />
 
       <Container className="relative flex flex-1 flex-col justify-center pb-28 pt-36 md:pt-40">
@@ -48,7 +51,7 @@ export function Hero() {
             </span>
           </motion.div>
 
-          <h1 className="max-w-5xl text-balance text-[clamp(2.6rem,7.2vw,6rem)] font-semibold leading-[1.03] tracking-[-0.04em] text-foreground">
+          <h1 className="max-w-5xl text-[clamp(2.6rem,7.2vw,6rem)] font-semibold leading-[1.03] tracking-[-0.04em] text-foreground">
             <motion.span variants={item} className="block text-gradient">
               We design websites
             </motion.span>
