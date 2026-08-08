@@ -44,3 +44,7 @@ next-env.d.ts
 server.log
 .vercel
 .env*
+
+# local audit artifacts
+lighthouse*.json
+*.log
