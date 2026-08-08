@@ -1,36 +1,54 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# WavesCo — Website Design Studio
 
-## Getting Started
+The portfolio site for [dev.wavesco.in](https://dev.wavesco.in). Its single job:
+prove that WavesCo can design and build premium websites.
 
-First, run the development server:
+Built with **Next.js 15**, **TypeScript**, **Tailwind CSS v4** and **Framer Motion**.
+
+## Getting started
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev       # http://localhost:3000
+npm run build     # production build
+npm run start     # serve the production build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Before you ship
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+All site-wide values live in `lib/site.ts`:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Key | What it is |
+| --- | --- |
+| `domain` / `url` | Public domain. Update `metadataBase` implications. |
+| `email` | Contact email (used for the `mailto:` link). |
+| `whatsapp` | WhatsApp number, digits only with country code (used for the `wa.me` links and the contact form). |
+| `booking.configured` | Set to `true` once the Cal.com page is live. |
+| `booking.url` | The Cal.com booking URL. Replaces the placeholder `https://cal.com/wavesco/intro`. |
 
-## Learn More
+Until `booking.configured` is `true`, the contact section shows a designed
+fallback card instead of a broken iframe. Flip it to `true` to embed Cal.com.
 
-To learn more about Next.js, take a look at the following resources:
+## Content
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Project samples live in `lib/projects.ts`. Each entry drives the card, the
+  live preview and the case study modal. Thumbnails are hand-built vector
+  mockups in `components/project-previews.tsx` — no image assets required.
+- Replace the sample projects with real client work as it ships. Cards render
+  whatever data is in the array; no other edits needed.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Structure
 
-## Deploy on Vercel
+```
+app/            Routes, layout, SEO files (robots, sitemap, metadata)
+components/     Sections: navigation, hero, projects, services, process,
+                contact, footer + project modal & preview mockups
+lib/            Site config, project data, utilities
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Notes
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Deliberately no pricing, testimonials, metrics, AI or marketing filler.
+- The contact form opens a pre-filled WhatsApp message — nothing is stored
+  server-side.
+- Accessible: semantic landmarks, focus-visible rings, reduced-motion support.
