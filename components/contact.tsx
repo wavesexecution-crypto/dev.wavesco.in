@@ -1,7 +1,6 @@
 ﻿"use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
 import { Mail, MessageCircle, Send, Check } from "lucide-react";
 import { Container } from "@/components/container";
 import { Reveal } from "@/components/reveal";
@@ -75,10 +74,9 @@ function ContactForm() {
         />
       </div>
 
-      <motion.button
+      <button
         type="submit"
-        whileTap={{ scale: 0.98 }}
-        className="mt-1 inline-flex h-11 items-center justify-center gap-2 rounded-full bg-accent text-sm font-medium text-white transition-colors hover:bg-accent-hover"
+        className="contact-submit mt-1 inline-flex h-11 items-center justify-center gap-2 rounded-full bg-accent text-sm font-medium text-white transition-transform duration-200 active:scale-[0.98]"
       >
         {sent ? (
           <>
@@ -91,7 +89,7 @@ function ContactForm() {
             <Send className="h-4 w-4" />
           </>
         )}
-      </motion.button>
+      </button>
       <p className="text-xs leading-relaxed text-faint">
         Your message opens in WhatsApp — no form data is stored on this site.
       </p>

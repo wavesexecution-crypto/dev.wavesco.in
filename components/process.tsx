@@ -1,7 +1,4 @@
-﻿"use client";
-
-import { motion } from "framer-motion";
-import { Container } from "@/components/container";
+﻿import { Container } from "@/components/container";
 import { Reveal } from "@/components/reveal";
 import { Eyebrow } from "@/components/section-heading";
 
@@ -42,11 +39,7 @@ export function Process() {
         <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {steps.map((step, i) => (
             <Reveal key={step.num} delay={0.07 * i}>
-              <motion.div
-                whileHover={{ y: -4 }}
-                transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                className="group flex h-full flex-col gap-4 rounded-2xl border border-line bg-card p-6 transition-colors duration-300 hover:border-zinc-700"
-              >
+              <div className="process-card group flex h-full flex-col gap-4 rounded-2xl border border-line bg-card p-6 hover:-translate-y-1 hover:border-zinc-700">
                 <span className="font-mono text-xs text-faint transition-colors group-hover:text-accent-text">
                   {step.num}
                 </span>
@@ -59,7 +52,7 @@ export function Process() {
                 <div className="mt-auto flex items-center gap-2">
                   <div className="h-px flex-1 bg-line transition-colors group-hover:bg-accent/50" />
                 </div>
-              </motion.div>
+              </div>
             </Reveal>
           ))}
         </div>

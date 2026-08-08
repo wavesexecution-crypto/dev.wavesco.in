@@ -1,6 +1,39 @@
 @import "tailwindcss";
 
-@theme {
+/* Reliable hover states — unlayered so they win over Tailwind's utilities */
+.btn-primary:hover {
+  background-color: #3b82f6;
+  translate: 0 -2px;
+}
+.btn-secondary:hover {
+  border-color: #52525b;
+  background-color: #111111;
+  translate: 0 -2px;
+}
+.contact-submit:hover {
+  background-color: #3b82f6;
+}
+.project-card-arrow {
+  opacity: 0;
+}
+.group:hover .project-card-arrow {
+  opacity: 1 !important;
+}
+.project-arrow-nudge {
+  transition: translate 0.2s ease;
+}
+.group:hover .project-arrow-nudge {
+  translate: 2px -2px !important;
+}
+.service-row:hover {
+  translate: 6px 0 !important;
+}
+.process-card:hover {
+  translate: 0 -4px !important;
+  border-color: #3f3f46 !important;
+}
+
+@theme inline {
   --color-background: #0a0a0a;
   --color-surface: #111111;
   --color-card: #181818;
@@ -75,7 +108,60 @@
   }
 }
 
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: translateY(24px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes bounce-soft {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(6px);
+  }
+}
+
 @layer utilities {
+  .animate-fade-up {
+    animation: fade-up 0.85s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+  .animate-fade-in {
+    animation: fade-in 0.25s ease both;
+  }
+  .animate-scale-in {
+    animation: scale-in 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+  .animate-bounce-soft {
+    animation: bounce-soft 1.8s ease-in-out infinite;
+  }
   .text-gradient {
     background: linear-gradient(180deg, #ffffff 0%, #b6b6bd 100%);
     -webkit-background-clip: text;
@@ -88,15 +174,5 @@
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
-  }
-
-  .edge-fade {
-    mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
-    -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
-  }
-
-  .dot-grid {
-    background-image: radial-gradient(circle, rgba(245, 245, 245, 0.06) 1px, transparent 1px);
-    background-size: 28px 28px;
   }
 }

@@ -1,6 +1,3 @@
-﻿"use client";
-
-import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { Container } from "@/components/container";
 import { Reveal } from "@/components/reveal";
@@ -39,11 +36,9 @@ export function Services() {
         <div className="mt-14 flex flex-col">
           {services.map((service, i) => (
             <Reveal key={service.num} delay={0.05 * i}>
-              <motion.a
-                href={`#contact`}
-                whileHover={{ x: 6 }}
-                transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                className="group flex items-start gap-6 border-t border-line py-8 transition-colors last:border-b md:gap-10 md:py-10"
+              <a
+                href="#contact"
+                className="service-row group flex items-start gap-6 border-t border-line py-8 hover:translate-x-1.5 last:border-b md:gap-10 md:py-10"
               >
                 <span className="mt-1.5 font-mono text-xs text-faint md:text-sm">
                   {service.num}
@@ -57,7 +52,7 @@ export function Services() {
                   </p>
                 </div>
                 <ArrowUpRight className="mt-2 h-5 w-5 shrink-0 text-faint transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent-text" />
-              </motion.a>
+              </a>
             </Reveal>
           ))}
         </div>

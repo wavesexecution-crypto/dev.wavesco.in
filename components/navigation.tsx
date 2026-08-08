@@ -1,7 +1,6 @@
-﻿"use client";
+"use client";
 
-import { useEffect, useRef, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { Logo } from "@/components/logo";
 import { Container } from "@/components/container";
@@ -20,7 +19,6 @@ const links = [
 export function Navigation() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-  const pendingHref = useRef<string | null>(null);
 
   useScrollLock(open);
 
@@ -34,10 +32,7 @@ export function Navigation() {
   useEffect(() => {
     const mq = window.matchMedia("(min-width: 768px)");
     const onChange = (e: MediaQueryListEvent) => {
-      if (e.matches) {
-        pendingHref.current = null;
-        setOpen(false);
-      }
+      if (e.matches) setOpen(false);
     };
     mq.addEventListener("change", onChange);
     return () => mq.removeEventListener("change", onChange);
@@ -45,20 +40,20 @@ export function Navigation() {
 
   const closeAndNavigate = (href: string) => (e: React.MouseEvent) => {
     e.preventDefault();
-    pendingHref.current = href;
     setOpen(false);
-  };
-
-  const closeMenu = () => {
-    pendingHref.current = null;
-    setOpen(false);
+    window.setTimeout(() => {
+      document.querySelector(href)?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }, 80);
   };
 
   return (
     <>
       <header
         className={cn(
-          "fixed inset-x-0 top-0 z-50 transition-[background-color,border-color,backdrop-filter] duration-300",
+          "fixed inset-x-0 top-0 z-50",
           scrolled
             ? "border-b border-line/80 bg-background/75 backdrop-blur-xl"
             : "border-b border-transparent bg-transparent"
@@ -113,85 +108,66 @@ export function Navigation() {
         </Container>
       </header>
 
-      <AnimatePresence onExitComplete={() => {
-        const href = pendingHref.current;
-        pendingHref.current = null;
-        if (href) {
-          document.querySelector(href)?.scrollIntoView({
-            behavior: "smooth",
-            block: "start",
-          });
-        }
-      }}>
-        {open ? (
-          <motion.div
-            id="mobile-menu"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed inset-0 z-[9999] h-dvh overflow-y-auto overscroll-contain bg-background md:hidden"
-            role="dialog"
-            aria-modal="true"
-            aria-label="Menu"
-          >
-            <Container className="flex min-h-dvh flex-col">
-              <div className="flex h-16 items-center justify-between">
-                <a
-                  href="#top"
-                  onClick={closeAndNavigate("#top")}
-                  className="transition-opacity hover:opacity-80"
-                  aria-label={`${site.name} — home`}
-                >
-                  <Logo />
-                </a>
-                <button
-                  type="button"
-                  onClick={closeMenu}
-                  aria-label="Close menu"
-                  autoFocus
-                  className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-line bg-surface text-foreground transition-colors hover:border-zinc-600"
-                >
-                  <X className="h-5 w-5" />
-                </button>
-              </div>
-
-              <nav className="flex flex-col pt-6" aria-label="Mobile">
-                {links.map((link, i) => (
-                  <motion.a
-                    key={link.href}
-                    href={link.href}
-                    onClick={closeAndNavigate(link.href)}
-                    initial={{ opacity: 0, y: 16 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.07 * i, duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                    className="border-b border-line/70 py-5 text-3xl font-semibold tracking-tight text-foreground transition-colors hover:text-accent-text"
-                  >
-                    {link.label}
-                  </motion.a>
-                ))}
-              </nav>
-
-              <motion.div
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.32, duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                className="mt-auto pb-10 pt-8"
+      {open ? (
+        <div
+          id="mobile-menu"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Menu"
+          className="animate-fade-in fixed inset-0 z-[9999] h-dvh overflow-y-auto overscroll-contain bg-background md:hidden"
+        >
+          <Container className="flex min-h-dvh flex-col">
+            <div className="flex h-16 items-center justify-between">
+              <a
+                href="#top"
+                onClick={closeAndNavigate("#top")}
+                className="transition-opacity hover:opacity-80"
+                aria-label={`${site.name} — home`}
               >
-                <Button
-                  href={site.booking.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  size="lg"
-                  className="w-full"
+                <Logo />
+              </a>
+              <button
+                type="button"
+                onClick={() => setOpen(false)}
+                aria-label="Close menu"
+                autoFocus
+                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-line bg-surface text-foreground transition-colors hover:border-zinc-600"
+              >
+                <X className="h-5 w-5" />
+              </button>
+            </div>
+
+            <nav className="flex flex-col pt-6" aria-label="Mobile">
+              {links.map((link, i) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  onClick={closeAndNavigate(link.href)}
+                  className="animate-fade-up border-b border-line/70 py-5 text-3xl font-semibold tracking-tight text-foreground hover:text-accent-text"
+                  style={{ animationDelay: `${0.07 * i}s` }}
                 >
-                  Book a Call
-                </Button>
-              </motion.div>
-            </Container>
-          </motion.div>
-        ) : null}
-      </AnimatePresence>
+                  {link.label}
+                </a>
+              ))}
+            </nav>
+
+            <div
+              className="animate-fade-up mt-auto pb-10 pt-8"
+              style={{ animationDelay: "0.32s" }}
+            >
+              <Button
+                href={site.booking.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                size="lg"
+                className="w-full"
+              >
+                Book a Call
+              </Button>
+            </div>
+          </Container>
+        </div>
+      ) : null}
     </>
   );
 }
