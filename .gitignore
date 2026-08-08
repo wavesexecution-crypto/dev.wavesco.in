@@ -48,3 +48,4 @@ server.log
 # local audit artifacts
 lighthouse*.json
 *.log
+lh*.json
