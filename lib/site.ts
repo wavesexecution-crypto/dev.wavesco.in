@@ -5,7 +5,7 @@ export const site = {
   description:
     "WavesCo is a small website design studio. We design, redesign and deploy premium websites for businesses that want to look as good online as they are in person.",
   email: "waves.execution@gmail.com",
-  whatsapp: "919000000000",
+  whatsapp: "919167150607",
   booking: {
     url: "https://cal.com/wavesco.in/booking-call",
   },
