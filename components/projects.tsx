@@ -1,17 +1,14 @@
 ﻿"use client";
 
-import { useState } from "react";
+import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { Container } from "@/components/container";
 import { Reveal } from "@/components/reveal";
 import { Eyebrow } from "@/components/section-heading";
-import { ProjectPreview } from "@/components/project-previews";
-import { ProjectModal } from "@/components/project-modal";
-import { projects, type Project } from "@/lib/projects";
+import { Concept } from "@/components/concepts/concept";
+import { projects } from "@/lib/projects";
 
 export function Projects() {
-  const [active, setActive] = useState<Project | null>(null);
-
   return (
     <section id="projects" className="scroll-mt-20 py-28 md:py-36">
       <Container>
@@ -19,13 +16,13 @@ export function Projects() {
           <Reveal className="flex flex-col gap-5">
             <Eyebrow>Selected Work</Eyebrow>
             <h2 className="max-w-2xl text-3xl font-semibold leading-[1.08] tracking-tight text-foreground sm:text-4xl md:text-5xl">
-              Websites we design, redesign and deploy.
+              Six concepts, six industries.
             </h2>
           </Reveal>
           <Reveal delay={0.1}>
             <p className="max-w-xs text-sm leading-relaxed text-muted">
-              A selection of recent builds — each one designed, built and
-              deployed by the studio.
+              Concept builds showing the range of websites we design —
+              e-commerce, SaaS, restaurants, apps, gyms and cafés.
             </p>
           </Reveal>
         </div>
@@ -33,12 +30,16 @@ export function Projects() {
         <div className="mt-16 grid gap-6 md:grid-cols-2 md:gap-8">
           {projects.map((project, i) => (
             <Reveal key={project.id} delay={0.05 * (i % 2)}>
-              <article onClick={() => setActive(project)} className="group cursor-pointer">
+              <Link href={`/projects/${project.slug}`} className="group block">
                 <div className="relative overflow-hidden rounded-2xl border border-line bg-card group-hover:scale-[1.015] group-hover:border-zinc-700">
-                  <div className="origin-top group-hover:scale-[1.04]">
-                    <ProjectPreview variant={project.variant} />
+                  <div className="pointer-events-none aspect-[4/3] w-full overflow-hidden">
+                    <div className="w-[250%] origin-top-left scale-[0.4]">
+                      <Concept concept={project.concept} preview />
+                    </div>
                   </div>
-
+                  <span className="absolute left-4 top-4 rounded-full border border-white/10 bg-black/60 px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.16em] text-zinc-300 backdrop-blur">
+                    Concept
+                  </span>
                   <div className="project-card-arrow absolute right-4 top-4 flex h-10 w-10 items-center justify-center rounded-full bg-foreground text-background">
                     <ArrowUpRight className="h-4 w-4" />
                   </div>
@@ -46,7 +47,7 @@ export function Projects() {
 
                 <div className="flex flex-col gap-2 px-1 pt-5 pb-2">
                   <div className="flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.2em] text-faint">
-                    <span>{project.industry}</span>
+                    <span>{project.category}</span>
                     <span className="h-px w-6 bg-line" />
                     <span>{project.year}</span>
                   </div>
@@ -66,13 +67,11 @@ export function Projects() {
                     </span>
                   </div>
                 </div>
-              </article>
+              </Link>
             </Reveal>
           ))}
         </div>
       </Container>
-
-      <ProjectModal project={active} onClose={() => setActive(null)} />
     </section>
   );
 }
