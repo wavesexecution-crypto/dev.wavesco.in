@@ -1,62 +1,56 @@
-﻿import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import type { Metadata } from "next";
+import { Inter, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
-import { site } from "@/lib/site";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+// Primary sans — Inter (closest Google Fonts equivalent to General Sans).
+// If you want General Sans itself, swap in next/font/local with the
+// Fontshare woff2 files in /public/fonts.
+const inter = Inter({
   subsets: ["latin"],
+  variable: "--font-inter",
   display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+// Also exported under the general-sans var so the CSS cascade stays identical.
+const generalSans = Inter({
   subsets: ["latin"],
+  variable: "--font-general-sans",
+  display: "swap",
+});
+
+const ibmPlexMono = IBM_Plex_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  variable: "--font-ibm-plex-mono",
   display: "swap",
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(site.url),
-  title: {
-    default: `${site.name} — Website Design Studio`,
-    template: `%s — ${site.name}`,
-  },
-  description: site.description,
-  keywords: [
-    "website design",
-    "website redesign",
-    "web development",
-    "premium websites",
-    "web design studio",
-    site.name,
-  ],
-  authors: [{ name: site.name }],
+  title: "dev.wavesco.in — The build studio behind every WavesCo OS",
+  description:
+    "Where WavesCo installs operating systems for founder-led companies. Engagements, install method, and live deployments.",
+  metadataBase: new URL("https://dev.wavesco.in"),
   openGraph: {
+    title: "dev.wavesco.in — WavesCo build studio",
+    description:
+      "Engagements, install method, and live deployments. Where WavesCo builds the operating system your team runs on.",
+    url: "https://dev.wavesco.in",
+    siteName: "WavesCo",
     type: "website",
-    url: site.url,
-    siteName: site.name,
-    title: `${site.name} — Website Design Studio`,
-    description: site.description,
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: `${site.name} — Website Design Studio`,
-    description: site.description,
-  },
-  robots: {
-    index: true,
-    follow: true,
   },
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
-    <html lang="en" className="bg-background">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+    <html
+      lang="en"
+      className={`${inter.variable} ${ibmPlexMono.variable} ${generalSans.variable}`}
+    >
+      <body className="bg-paper text-foreground font-sans antialiased">
         {children}
       </body>
     </html>
