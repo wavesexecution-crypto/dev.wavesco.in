@@ -38,6 +38,18 @@ export const metadata: Metadata = {
     siteName: "WavesCo",
     type: "website",
   },
+  icons: {
+    icon: [
+      { url: '/favicon.ico' },
+      { url: '/favicons/favicon-32x32.png', type: 'image/png', sizes: '32x32' },
+      { url: '/favicons/favicon-16x16.png', type: 'image/png', sizes: '16x16' }
+    ],
+    apple: '/favicons/apple-touch-icon.png',
+    other: [
+      { rel: 'manifest', url: '/favicons/site.webmanifest' }
+    ]
+  },
+  
 };
 
 export default function RootLayout({

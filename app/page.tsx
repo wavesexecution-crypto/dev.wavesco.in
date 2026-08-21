@@ -406,7 +406,7 @@ export default function Page() {
                   rel="noopener"
                   className="inline-flex items-center justify-center gap-2 px-6 py-3 border border-white/20 text-white font-medium rounded-sm hover:bg-white/5 transition-colors"
                 >
-                  See wavesco.in (positioning) ↗
+                  See wavesco.in <strong className="font-bold">positioning</strong> ↗
                 </a>
                 <a
                   href={siteLinks.clientApp}
@@ -414,7 +414,7 @@ export default function Page() {
                   rel="noopener"
                   className="inline-flex items-center justify-center gap-2 px-6 py-3 border border-white/20 text-white font-medium rounded-sm hover:bg-white/5 transition-colors"
                 >
-                  See app.wavesco.in (dashboard) ↗
+                  See app.wavesco.in <strong className="font-bold">dashboard</strong> ↗
                 </a>
               </div>
 
@@ -434,7 +434,7 @@ export default function Page() {
                     marketing {siteLinks.marketing}
                   </div>
                   <div className="text-white/80">
-                    dashboard {siteLinks.clientApp}
+                    <strong className="font-bold">dashboard</strong> {siteLinks.clientApp}
                   </div>
                 </div>
                 <div>
