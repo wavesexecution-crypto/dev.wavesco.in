@@ -150,13 +150,13 @@ export default function Page() {
             </div>
             <div className="col-span-12 md:col-span-9">
               <h2 className="display-lg mb-8">
-                We don't design websites. <br />
+                We don&apos;t design websites. <br />
                 <span className="text-muted">
                   We install the operating system behind your business.
                 </span>
               </h2>
               <p className="body-lg max-w-3xl mb-12">
-                A founder-led company runs on memory until it can't. Then it
+                A founder-led company runs on memory until it can&apos;t. Then it
                 runs on the founder. We replace that with a system — clear
                 roles, decision rights, handoffs, and review loops — so the
                 team can run operations, make decisions, and keep standards
@@ -331,7 +331,7 @@ export default function Page() {
               </h2>
               <p className="body-lg max-w-2xl">
                 The tools we connect, not the tools we replace. Most businesses
-                already pay for half of this stack — they're just not talking
+                already pay for half of this stack — they&apos;re just not talking
                 to each other.
               </p>
             </div>
@@ -386,7 +386,7 @@ export default function Page() {
               </h2>
               <p className="body-lg text-white/70 max-w-2xl mb-12">
                 We start with a confidential intake review. 30 minutes. We
-                tell you what we'd do, what it would take, and whether we're
+                tell you what we&apos;d do, what it would take, and whether we&apos;re
                 the right team for it. No deck, no commitment.
               </p>
 
