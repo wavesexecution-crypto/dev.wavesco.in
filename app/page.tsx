@@ -17,6 +17,9 @@ export default function Page() {
             <span>dev.wavesco.in</span>
           </Link>
           <div className="hidden md:flex items-center gap-8 font-mono text-xs tracking-wider uppercase text-body">
+            <Link href="/products" className="hover:text-navy transition-colors">
+              Products
+            </Link>
             <Link href="#engagements" className="hover:text-navy transition-colors">
               Engagements
             </Link>
@@ -224,8 +227,53 @@ export default function Page() {
       </section>
 
       {/* ============================================================
-          ENGAGEMENTS — the build log
-          ============================================================ */}
+           PRODUCTS — full showcase (80%)
+           ============================================================ */}
+      <section id="products" className="border-b border-line">
+        <div className="max-w-6xl mx-auto px-6 py-24 md:py-32">
+          <div className="grid grid-cols-12 gap-6 mb-16">
+            <div className="col-span-12 md:col-span-3">
+              <div className="font-mono text-xs tracking-widest uppercase text-muted">section // 02</div>
+              <div className="font-mono text-xs tracking-widest uppercase text-muted mt-1">products</div>
+            </div>
+            <div className="col-span-12 md:col-span-9">
+              <h2 className="display-lg mb-4">Products</h2>
+              <p className="body-lg max-w-2xl">
+                The same operating systems we install — as products. Full capabilities, workflows, and architecture.{" "}
+                <Link href="/products" className="text-accent hover:text-accent-hover">
+                  Explore all →
+                </Link>
+              </p>
+            </div>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-line">
+            {[
+              { slug: "wavesos", name: "WavesOS", tagline: "Operating System for Scale", desc: "3-layer framework — Core Logic, Execution Engine, Governance." },
+              { slug: "acquisition-os", name: "Acquisition OS", tagline: "Lead generation & outreach", desc: "Discovery, verification, scoring, outreach — from lead to pipeline." },
+              { slug: "client-os", name: "Client OS", tagline: "Delivery & operations", desc: "Project intake, task ownership, client reporting — every handoff tracked." },
+            ].map((p) => (
+              <Link key={p.slug} href={`/products/${p.slug}`} className="bg-paper p-8 hover:bg-surface transition-colors group">
+                <div className="font-mono text-xs tracking-widest text-accent mb-2">{p.tagline}</div>
+                <h3 className="text-xl font-semibold text-navy mb-3 group-hover:text-accent">{p.name}</h3>
+                <p className="text-sm text-body leading-relaxed mb-4">{p.desc}</p>
+                <div className="font-mono text-xs tracking-wider uppercase text-accent">Explore →</div>
+              </Link>
+            ))}
+          </div>
+          <div className="mt-8">
+            <Link href="/products" className="inline-flex items-center gap-2 px-6 py-3 bg-navy text-white font-semibold rounded-sm hover:bg-navy-light">
+              View full products →
+            </Link>
+            <a href="https://wavesco.in#products" className="ml-4 font-mono text-xs tracking-wider text-muted hover:text-navy">
+              See 20% overview on wavesco.in ↗
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* ============================================================
+           ENGAGEMENTS — the build log
+           ============================================================ */}
       <section
         id="engagements"
         className="border-b border-line bg-surface"
