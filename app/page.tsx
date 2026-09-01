@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { auditCycle } from "@/lib/audit-cycle";
 import { engagements, installationPhases, siteLinks } from "@/lib/engagements";
 
 export default function Page() {
@@ -17,6 +18,9 @@ export default function Page() {
             <span>dev.wavesco.in</span>
           </Link>
           <div className="hidden md:flex items-center gap-8 font-mono text-xs tracking-wider uppercase text-body">
+            <Link href="#audit-cycle" className="hover:text-navy transition-colors">
+              Audit Cycle
+            </Link>
             <Link href="/products" className="hover:text-navy transition-colors">
               Products
             </Link>
@@ -227,8 +231,111 @@ export default function Page() {
       </section>
 
       {/* ============================================================
-           PRODUCTS — full showcase (80%)
+           AUDIT CYCLE — core methodology (8 stages)
            ============================================================ */}
+      <section id="audit-cycle" className="border-b border-line bg-surface">
+        <div className="max-w-6xl mx-auto px-6 py-24 md:py-32">
+          <div className="grid grid-cols-12 gap-6 mb-16">
+            <div className="col-span-12 md:col-span-3">
+              <div className="font-mono text-xs tracking-widest uppercase text-muted">section // 02</div>
+              <div className="font-mono text-xs tracking-widest uppercase text-muted mt-1">audit.cycle</div>
+            </div>
+            <div className="col-span-12 md:col-span-9">
+              <div className="inline-flex items-center gap-2 font-mono text-xs tracking-widest uppercase text-accent mb-4">
+                <span className="inline-block w-1.5 h-1.5 bg-accent rounded-full" />
+                Audit Cycle — Waves methodology
+              </div>
+              <h2 className="display-lg mb-6">
+                Diagnose first. <br />
+                <span className="text-muted">Then design, build, and monitor.</span>
+              </h2>
+              <p className="body-lg max-w-3xl mb-8">
+                Every Waves engagement follows the same 8 stages — from read-only discovery with our diagnostic suite to
+                monitored deployment. No assumptions, no mutation until evidence is in.
+              </p>
+              <div className="flex flex-wrap items-center gap-2 font-mono text-xs tracking-wider text-muted">
+                <span className="px-3 py-1 bg-paper border border-line rounded-sm">5 diagnostic tools</span>
+                <span className="px-3 py-1 bg-paper border border-line rounded-sm">300 tests</span>
+                <span className="px-3 py-1 bg-paper border border-line rounded-sm">read-only · bounded · masked</span>
+                <span className="px-3 py-1 bg-paper border border-line rounded-sm">v0.1.0 · 2026-09-02</span>
+              </div>
+            </div>
+          </div>
+
+          {/* cycle flow — horizontal on desktop, stacked on mobile */}
+          <div className="mb-12 overflow-x-auto">
+            <div className="hidden md:flex items-center justify-between gap-2 font-mono text-xs tracking-wider text-muted min-w-[760px]">
+              {auditCycle.map((stage, i) => (
+                <div key={stage.code} className="flex items-center gap-2">
+                  <div className="flex flex-col items-center gap-1">
+                    <div className="w-10 h-10 rounded-full bg-navy text-white flex items-center justify-center font-semibold text-xs">{stage.n}</div>
+                    <div className="text-accent font-semibold text-[10px] tracking-widest">{stage.code}</div>
+                  </div>
+                  {i < auditCycle.length - 1 && <div className="w-6 h-px bg-line mx-1" aria-hidden>→</div>}
+                </div>
+              ))}
+            </div>
+            <div className="flex md:hidden items-center gap-1 font-mono text-[10px] tracking-wider text-muted">
+              {auditCycle.map((s) => (
+                <span key={s.code} className="px-2 py-1 bg-paper border border-line rounded-sm">{s.code}</span>
+              ))}
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-line">
+            {auditCycle.map((stage) => (
+              <div key={stage.code} className="bg-paper p-8 hover:bg-white transition-colors group">
+                <div className="flex items-baseline justify-between mb-6">
+                  <span className="font-mono text-xs tracking-widest text-accent">{stage.code}</span>
+                  <span className="font-mono text-xs tracking-wider text-muted">stage {stage.n}</span>
+                </div>
+                <h3 className="text-xl font-semibold mb-3 text-navy group-hover:text-accent transition-colors">
+                  {stage.title}
+                </h3>
+                <p className="text-sm text-body leading-relaxed mb-4">{stage.detail}</p>
+                <div className="font-mono text-xs tracking-wider text-muted border-t border-line pt-3">
+                  <span className="text-accent">→</span> {stage.output}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-12 grid grid-cols-1 lg:grid-cols-3 gap-px bg-line">
+            <div className="bg-paper p-6">
+              <div className="font-mono text-xs tracking-widest uppercase text-accent mb-2">tooling</div>
+              <h4 className="font-semibold text-navy mb-2">Waves OSS Diagnostic Suite</h4>
+              <p className="text-sm text-body leading-relaxed">
+                5 tools — waves-pii, waves-ghost, waves-latency, waves-legacy, waves-sync. Each independently installable,
+                Docker-ready (python:3.11-slim, non-root), HTML/JSON/terminal reports at your chosen path.
+              </p>
+            </div>
+            <div className="bg-paper p-6">
+              <div className="font-mono text-xs tracking-widest uppercase text-accent mb-2">guarantee</div>
+              <h4 className="font-semibold text-navy mb-2">Read-only. Bounded. Masked.</h4>
+              <p className="text-sm text-body leading-relaxed">
+                No DELETE/Terminate, no credential storage, no raw PII, SSRF-protected, safe_path-guarded, header
+                redacted. Reports show <span className="font-mono text-xs">j***@example.com</span> never raw data.
+              </p>
+            </div>
+            <div className="bg-paper p-6">
+              <div className="font-mono text-xs tracking-widest uppercase text-accent mb-2">how it&apos;s used</div>
+              <h4 className="font-semibold text-navy mb-2">Evidence → architecture review</h4>
+              <p className="text-sm text-body leading-relaxed">
+                PII privacy review, Ghost FinOps, Latency platform, Legacy modernization, Sync reconciliation — the tools
+                diagnose; Waves builds the OS in a separate, approved workflow.
+              </p>
+            </div>
+          </div>
+
+          <div className="mt-8 font-mono text-xs tracking-wider text-muted">
+            Source of truth: <span className="text-navy">Waves/OSS → 05 Audit Cycle</span> · Verified 2026-09-02 · 83 (legacy) + 30 (sync) tests · Docker + Quick Start validated
+          </div>
+        </div>
+      </section>
+
+      {/* ============================================================
+           PRODUCTS — full showcase (80%)
+            ============================================================ */}
       <section id="products" className="border-b border-line">
         <div className="max-w-6xl mx-auto px-6 py-24 md:py-32">
           <div className="grid grid-cols-12 gap-6 mb-16">
