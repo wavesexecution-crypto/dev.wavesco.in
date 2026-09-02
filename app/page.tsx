@@ -355,9 +355,7 @@ export default function Page() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-line">
             {[
-              { slug: "wavesos", name: "WavesOS", tagline: "Operating System for Scale", desc: "3-layer framework — Core Logic, Execution Engine, Governance." },
               { slug: "acquisition-os", name: "Acquisition OS", tagline: "Lead generation & outreach", desc: "Discovery, verification, scoring, outreach — from lead to pipeline." },
-              { slug: "client-os", name: "Client OS", tagline: "Delivery & operations", desc: "Project intake, task ownership, client reporting — every handoff tracked." },
             ].map((p) => (
               <Link key={p.slug} href={`/products/${p.slug}`} className="bg-paper p-8 hover:bg-surface transition-colors group">
                 <div className="font-mono text-xs tracking-widest text-accent mb-2">{p.tagline}</div>
