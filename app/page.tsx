@@ -50,14 +50,7 @@ export default function Page() {
               app.wavesco.in ↗
             </a>
           </div>
-          <a
-            href={siteLinks.booking}
-            target="_blank"
-            rel="noopener"
-            className="inline-flex items-center gap-2 px-4 py-2 bg-navy text-white text-sm font-medium rounded-sm hover:bg-navy-light transition-colors"
-          >
-            Book Architecture Review
-          </a>
+          
         </nav>
       </header>
 

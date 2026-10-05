@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { Logo } from "@/components/logo";
 import { Container } from "@/components/container";
-import { Button } from "@/components/button";
 import { useScrollLock } from "@/components/use-scroll-lock";
 import { site } from "@/lib/site";
 import { cn } from "@/lib/utils";
@@ -84,16 +83,6 @@ export function Navigation() {
           </nav>
 
           <div className="flex items-center gap-3">
-            <div className="hidden sm:block">
-              <Button
-                href={site.booking.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                size="sm"
-              >
-                Book a Call
-              </Button>
-            </div>
             <button
               type="button"
               onClick={() => setOpen((v) => !v)}
@@ -150,21 +139,6 @@ export function Navigation() {
                 </a>
               ))}
             </nav>
-
-            <div
-              className="animate-fade-up mt-auto pb-10 pt-8"
-              style={{ animationDelay: "0.32s" }}
-            >
-              <Button
-                href={site.booking.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                size="lg"
-                className="w-full"
-              >
-                Book a Call
-              </Button>
-            </div>
           </Container>
         </div>
       ) : null}
